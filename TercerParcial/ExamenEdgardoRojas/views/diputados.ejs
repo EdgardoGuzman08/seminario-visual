@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <h1>Lista de Diputados</h1>
+    <table>
+        <thead>
+            <tr>
+                <td>Codigo</td>
+                <td>Nombre</td>
+                <td>Apellido</td>
+            </tr>
+        </thead>
+
+        <tbody>
+            <% datos.forEach(element => { %>
+                <tr>
+                    <td><%= element.iddiputado %></td>
+                    <td><%= element.nombre %></td>
+                    <td><%= element.apellido %></td>
+                </tr>
+            <% }); %>
+        </tbody>
+    </table>
+    <br>
+    <button type="button" onclick="location.href='/cDiputado'">Crear</button>
+    <button type="button" onclick="location.href='/principal'">Volver</button>
+</body>
+</html>

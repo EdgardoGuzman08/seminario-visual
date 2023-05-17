@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <h1>Lista de Proyecto</h1>
+    <table border="2">
+        <thead>
+            <tr>
+                <td>Codigo</td>
+                <td>Nombre Proyecto</td>
+                <td>Ciudad</td>
+                <td>Monto</td>
+                <td>Id Diputado</td>
+                <td>Eliminar</td>
+            </tr>
+        </thead>
+
+        <tbody>
+            <% proyecto.forEach(element => { %>
+                <tr>
+                    <td><%= element.idproyecto %></td>
+                    <td><%= element.nombreproyecto %></td>
+                    <td><%= element.ciudad %></td>
+                    <td><%= element.monto %></td>
+                    <td><%= element.iddiputado %></td>
+                    <td><button onclick="location.href='/eliminarPro/<%= element.idproyecto %>'">Eliminar</button></td>
+                </tr>
+            <% }); %>
+        </tbody>
+    </table>
+    <br>
+    <button type="button" onclick="location.href='/crearPro'">Crear</button>
+    <button type="button" onclick="location.href='/menu'">Volver a Menu</button>
+</body>
+</html>

@@ -1,0 +1,55 @@
+/*
+--LOS CAMPOS DEL ALUMNO SERIAN CODIGO, NOMBRE Y APELLIDO
+--UNA VEZ REALIZADO DE PODER GUARDAR Y BUSCAR UN ALUMNO LO PODAMOS ASIGNAR A UNA CLASE MATRICULADA 
+--UN ALUMNO VA PODERSE MATRICULAR EN UNA CLASE O VARIAS UNA VEZ MATRICULADO PODER CONSULTAR ESE ALUMNO Y 
+
+--ASIGNARLE TRES NOTAS A LA CLASE REGISTRADAS DEL ALUMNO
+--UN ALUMNO EN LA CLASE DE MATEMATICAS- EDGARDO ESTE ALUMNO SACO 100 100 Y 100 EN LOS 3 PARCIALES DE ESA CLASE EN CONCRETO 
+--UNA VEZ QUE ESAS NOTAS SEAN ASIGNADAS SI ES MAYOR A 70 ES ARPOBADO SI ES MENOS REPROBADO
+
+
++POSIBILIDAD DE CONSULTAR AL ALUMNO Y PODER COMPARTIR LA BOLETA DEL ALUMNO USANDO LAS CLASES QUE LLEVA CON SUS RESPECTIVAS CALIFICACCIONES, PROMEDIO Y ADEMAS OBSERVACION SI ES APRO O REPRO
++LA BOLETA SE CONSULTA POR ALUMNO    
+*/
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    
+    <label for="">Codigo Alumno</label>
+    <input type="text" name="" id="codigoAlumno">
+    <label for="">Nombre</label>
+    <input type="text" name="" id="nombreAlumno">
+    <label for="">Apellido</label>
+    <input type="text" name="" id="apellidoAlumno">
+    <br>
+    <br>
+    <button type="button" id="guardar">Guardar</button>
+    <button type="button" id="buscar">Buscar</button>
+    <button type="reset" class="limpiar" onclick="limpiarCampos()">Limpiar</button>
+    
+    <hr>
+    <br>
+    <label for="clases">Clases:</label>
+    <select id="clases">
+        <!-- Aquí las opciones desde el js utilizando un ciclo for -->
+    </select>
+    <br>
+    <button id="btnMatricular">Matricular</button>
+    <hr>
+    <div class="notasgenerales">
+        <input type="text" id="nota1" placeholder="Nota 1">
+        <input type="text" id="nota2" placeholder="Nota 2">
+        <input type="text" id="nota3" placeholder="Nota 3">
+    </div>
+    <button type="button" id="asignarnotas">Notas</button>
+
+    <script src="boleta.js"></script>
+</body>
+</html>

@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+    
+<body>
+    <label for="">Producto</label>
+    <input type="text" id="producto">
+    <label for="">Cantidad</label>
+    <input type="text" id="cantidad">
+    <label for="">Precio</label>
+    <input type="text" id="precio">
+    <br>
+    Credito<input type="radio" name="tipo-pago" id="credito">
+    contado<input type="radio" name="tipo-pago" id="contado">
+    <br>
+    Tercera Edad<input type="checkbox" id="tercera_edad">
+    <br>
+    <button type="button" onclick="EjercicioPractica()">Guardar</button>
+
+    <h3>Ventas a crédito</h3>
+    <ul id="listaCredito"></ul>
+
+    <h3>Ventas al contado</h3>
+    <ol id="listaContado"></ol>
+
+    <script src="venta.js"></script>
+</body>
+</html>

@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <div>
+        <label for="usuario-id">Id User:&nbsp;&nbsp;&nbsp;</label>
+        <input type="number" id="usuario-id">
+    </div>
+    <div>
+        <label for="usuario-nombre">Nombre:&nbsp;&nbsp;</label>
+        <input readonly id="usuario-nombre"></input>
+    </div>
+    <div>
+        <label for="usuario-apellido">Apellido:&nbsp;</label>
+        <input readonly id="usuario-apellido"></input>
+    </div>
+    <br>
+    <button  onclick="Busuario()">Buscar Usuario</button>
+    <button onclick="limpiarUsuario();">Eliminar Usuario</button>
+    <br>
+    <br>
+    <table id="tabla-vehiculos" border="3px">
+        <thead>
+            <tr>
+                <th>ID</th>
+                <th>Marca</th>
+                <th>Modelo</th>
+            </tr>
+        </thead>
+        <tbody>
+        </tbody>
+    </table>
+
+    <div id="mensaje-usuario-no-existe" style="display:none;">
+        El usuario no existe.
+    </div>
+
+    <script src="Usuarios.js"></script>
+</body>
+</html>

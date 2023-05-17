@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <h1>Lista de Diputados</h1>
+    <table border="2">
+        <thead>
+            <tr>
+                <td>Codigo</td>
+                <td>Nombre Completo</td>
+                <td>Partido</td>
+                <td>Eliminar</td>
+            </tr>
+        </thead>
+
+        <tbody>
+            <% datos.forEach(element => { %>
+                <tr>
+                    <td><%= element.ID %></td>
+                    <td><a href="/detalle/<%= element.ID %>"><%= element.nombre %> <%= element.apellido %></a></td>
+                    <td><%= element.partido %></td>
+                    <td><button onclick="location.href='/eliminarDip/<%= element.ID %>'">Eliminar</button></td>
+                </tr>
+            <% }); %>
+        </tbody>
+    </table>
+    <br>
+    <button type="button" onclick="location.href='/crearDip'">Crear Diputado</button>
+    <button type="button" onclick="location.href='/proyecto'">Ver Proyecto</button>
+    <button type="button" onclick="location.href='/menu'">Volver a Menu</button>
+</body>
+</html>

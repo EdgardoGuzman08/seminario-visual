@@ -1,0 +1,234 @@
+/* 
+Seminario de Software 1601
+Ing. Jarvin Calderon
+
+Alumnos:
+EDGARDO JOSUE GUZMAN PIEDY, 0501200010278
+DARWIN ALEJANDRO GARCIA BONILLA, 0801199918475
+
+*/
+
+
+let productos = [
+    { nombre: "Arroz", precio: 12, existencia: 20, stockMinimo: 5 },
+    { nombre: "Azucar", precio: 15, existencia: 15, stockMinimo: 3 },
+    { nombre: "Mantequilla", precio: 30, existencia: 12, stockMinimo: 4 },
+    { nombre: "Pan", precio: 20, existencia: 6, stockMinimo: 2 },
+];
+
+let clientes = [];
+let ventas = [];
+let noDisponible = [];
+let carrito = {};
+let continuar = true;
+
+function imprimirVentas() {
+    let detallesVentas = "";
+    ventas.forEach((venta) => {
+        detallesVentas += `
+            Cliente: ${venta.cliente}
+            Producto: ${venta.producto}
+            Cantidad: ${venta.cantidad}
+            Precio: ${venta.precio}
+            Subtotal: ${venta.subtotal}
+            Pago: ${venta.pago}
+            ----------------------------
+            `;
+    });
+    console.log(detallesVentas);
+}
+
+do {
+    let opcion = parseInt(prompt("¿Qué acción desea realizar?\n1. Agregar producto al carrito\n2. Aumentar existencia de un producto\n3. Agregar un nuevo producto al inventario\n4. Para Generar Reporte de Venta\n5. Consultar Producto\n6. Buscar Producto\n7. Salir"));
+    switch (opcion) {
+    case 1:
+        let productosEnCarrito = {};
+        let Agregar = true;
+        do {
+            let producto = prompt("¿Qué producto desea agregar al carrito?");
+            let productoEncontrado = productos.find((p) => p.nombre === producto);
+            if (productoEncontrado) {
+                let cantidad = parseInt(prompt(`¿Cuántos ${productoEncontrado.nombre} desea agregar al carrito?`));
+            if (!isNaN(cantidad) && cantidad > 0 && cantidad <= productoEncontrado.existencia) {
+                if (productoEncontrado.existencia - cantidad < productoEncontrado.stockMinimo) {
+                    alert(`No se puede vender esta cantidad ${cantidad}
+                    \nla existencia actual es de: ${productoEncontrado.existencia - cantidad}
+                    \nNuestro stock minimo es: ${productoEncontrado.stockMinimo}`
+                );
+                } else {
+                    productosEnCarrito[producto] = {
+                    nombre: producto,
+                    precio: productoEncontrado.precio,
+                    cantidad: cantidad,
+                };
+                    alert(`${cantidad} libras de ${productoEncontrado.nombre} agregado al carrito.`);
+                    productoEncontrado.existencia -= cantidad;
+                }
+            } else if (isNaN(cantidad) || cantidad <= 0) {
+                alert("Dato Incorrecto, Ingrese un Digito");
+            } else if (cantidad > productoEncontrado.existencia) {
+                alert(`No hay suficiente ${productoEncontrado.nombre} en existencia. Existencia Minima: ${productoEncontrado.existencia}`);
+            }
+        } else {
+            alert("Producto no disponible.");
+            noDisponible.push(producto);
+        }
+            Agregar = confirm("¿Desea agregar otro producto al carrito?");
+        } while (Agregar);
+            carrito = productosEnCarrito;
+            let nCliente = 'Cliente sin registrar';
+            let clienteEncontrado;
+            let nombresRegistrados = [];
+            let intentos = 0;
+
+            do {
+                let buscarNombre = confirm("¿Desea buscar su nombre en la lista de clientes existentes?");
+                if (buscarNombre) {
+                    let nombresClientes = clientes.map((c) => c.nombre);
+                    let nombreSeleccionado = prompt(`Ingrese su nombre o seleccione su nombre de la lista:\n${nombresClientes.join("\n")}`);
+                    clienteEncontrado = clientes.find((c) => c.nombre.toLowerCase() === nombreSeleccionado.toLowerCase());
+                    if (!clienteEncontrado) {
+                        let registrarNuevo = confirm("El nombre ingresado no está en la lista. ¿Desea registrarse?");
+                        if (registrarNuevo) {
+                            nCliente = nombreSeleccionado;
+                            clientes.push({ nombre: nCliente, compras: [] });
+                            clienteEncontrado = clientes[clientes.length - 1];
+                            nombresRegistrados.push(nCliente);
+                        } else {
+                            alert("No se puede continuar con la venta sin registrar al cliente.");
+                            break;
+                        }
+                    } else {
+                        nCliente = clienteEncontrado.nombre;
+                    }
+                }
+                intentos++;
+                if (intentos > 2) {
+                    alert("Ha intentado ingresar un nombre no registrado varias veces. Por favor intente más tarde.");
+                    break;
+                }
+            } while (!clienteEncontrado);
+
+            let pPago = prompt("¿Cómo desea pagar? 1) Efectivo 2) Tarjeta");
+            let pSubtotal = 0;
+
+            for (let producto in productosEnCarrito) {
+                let p = productosEnCarrito[producto];
+                pSubtotal += p.cantidad * p.precio;
+                ventas.push({
+                    cliente: nCliente,
+                    producto: p.nombre,
+                    cantidad: p.cantidad,
+                    precio: p.precio,
+                    subtotal: p.cantidad * p.precio,
+                    total: pSubtotal * 1.15,
+                    pago: pPago
+                });
+            }
+
+        break;
+
+        case 2:
+            let aumentarExistencia = true;
+                do {
+                    let producto = prompt("¿Qué producto desea aumentar su existencia?").trim();
+                    let productoEncontrado = productos.find((p) => p.nombre.toLowerCase() === producto.toLowerCase());
+                    if (productoEncontrado) {
+                        let cantidad = parseInt(prompt(`¿Cuántas ${productoEncontrado.nombre} desea agregar a su existencia?`));
+                            if (!isNaN(cantidad) && cantidad > 0) {
+                                productoEncontrado.existencia += cantidad;
+                                alert(`${cantidad} libras de ${productoEncontrado.nombre} agregado a su existencia.`);
+            } else if (isNaN(cantidad) || cantidad <= 0) {
+                alert("Cantidad incorrecta. Intente de nuevo.");
+            }
+            } else {
+                alert("Producto no encontrado en el inventario.");
+            }
+                aumentarExistencia = confirm("¿Desea aumentar la existencia de otro producto?");
+            } while (aumentarExistencia);
+            break;
+
+        case 3:
+            let agregarProducto = true;
+                do {
+                    let producto = prompt("¿Qué producto desea agregar al inventario?").trim().toLowerCase();
+                    let productoEncontrado = productos.find((p) => p.nombre.toLowerCase() === producto);
+                    if (!productoEncontrado) {
+                        let precio = parseFloat(prompt(`Ingrese el precio de ${producto}`).trim());
+                        let existencia = parseInt(prompt(`Ingrese la existencia inicial de ${producto}`).trim());
+                        let stockMinimo = parseInt(prompt(`Ingrese el stock mínimo de ${producto}`).trim());
+                            if (!isNaN(precio) && !isNaN(existencia) && !isNaN(stockMinimo)) {
+                                productos.push({
+                                nombre: producto,
+                                precio: precio,
+                                existencia: existencia,
+                                stockMinimo: stockMinimo,
+                            });
+                            alert(`${producto} agregado al inventario.`);
+                        } else {
+                            alert("Datos ingresados incorrectos. Intente de nuevo.");
+                        }
+                    } else {
+                        alert("El producto ya existe en el inventario.");
+                    }
+                    agregarProducto = confirm("¿Desea agregar otro producto?");
+                    } while (agregarProducto);
+                    break;
+                
+                    case 4:
+                        
+                        imprimirVentas();
+                        break;
+                
+                        case 5:
+                            let productosInfo = '';
+                            productos.forEach((producto) => {
+                                productosInfo += `Nombre: ${producto.nombre}\nPrecio: ${producto.precio}\nExistencia: ${producto.existencia}\n\n`;
+                            });
+                            alert(`Inventario:\n${productosInfo}`);
+                            break;
+
+
+                            case 6:
+                                let productoConsultado = prompt("Ingrese el nombre del producto que desea consultar:").trim();
+                                let productoEncontrado = productos.find((p) => p.nombre.toLowerCase() === productoConsultado.toLowerCase());
+                                if (productoEncontrado) {
+                                    alert(`
+                                        Detalles de ${productoEncontrado.nombre}:
+                                        Precio: ${productoEncontrado.precio}
+                                        Existencia: ${productoEncontrado.existencia}
+                                        Stock mínimo: ${productoEncontrado.stockMinimo}
+                                    `);
+                                } else {
+                                    alert("Producto no encontrado.");
+                                }
+                                break;
+                case 7:
+                    continuar = false;
+                    break;
+                default:
+                    alert("Opción no válida. Intente de nuevo.");
+                    break;
+                }
+        }  while (continuar);
+
+console.log("--------------------");
+console.log("\nVentas Totales");
+console.log(ventas);
+
+console.log("\nVentas Efectivo");
+ListaVentas(1);
+
+console.log("\nVentas Tarjeta");
+ListaVentas(2);
+
+console.log("\nProductos no disponibles");
+console.log(noDisponible);
+
+function ListaVentas(tipo) {
+    for (tipos of ventas) {
+        if (tipos.pago == tipo) {
+            console.log(tipos);
+        }
+    }
+};

@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Detalle del proyecto</title>
+</head>
+<body>
+    <h1>Reporte de Proyectos por Diputado: <%= diputado %> <%= diputado2 %> </h1>
+    <table border="2">
+        <thead>
+            <tr>
+                <td>Id del Proyecto</td>
+                <td>Nombre Proyecto</td>
+                <td>Ciudad</td>
+                <td>Monto</td>
+            </tr>
+        </thead>
+
+        <tbody>
+            <% infopro.forEach(element => { %>
+                <tr>
+                    <td><%= element.idproyecto %></td>
+                    <td><%= element.nombreproyecto %></td>
+                    <td><%= element.ciudad %></td>
+                    <td><%= element.monto %></td>
+                </tr>
+            <% }); %>
+        </tbody>
+    </table>
+    <br>
+    <button type="button" onclick="location.href='/diputado'">Volver a diputado</button>
+</body>
+</html>

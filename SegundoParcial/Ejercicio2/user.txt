@@ -1,0 +1,34 @@
+
+// function verVehiculo(user){
+//     //console.log("Buscando vehiculos por usuario");
+//     setTimeout(function(){
+//         for(let veh of vehiculos){
+//             if(veh.idusuario === user){
+//                 console.log(veh.marca);
+//             }
+//         }
+//     },3000);
+// }
+
+// function verUsuario(user, verVehiculo){
+//     setTimeout(function(){
+//         if (usuarios.id=user){
+//             console.log("Usuarios Encontrados");
+//             verVehiculo(user);
+//             setTimeout(function(){
+//                 for(let veh of vehiculos){
+//                     if(veh.idusuario === user){
+//                         console.log(veh.marca);
+//                     }
+//                 }
+//             },3000);
+//         }else{
+//             console.log("Usuarios no encontrados");
+//         }
+//     },3000);
+//     console.log("Buscando datos de usuarios");
+// }
+
+// verUsuario(3, verVehiculo);
+
+

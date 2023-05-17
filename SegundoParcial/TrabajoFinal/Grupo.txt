@@ -1,0 +1,9 @@
+/* 
+Clase Seminario de Software
+Ing Jarvin Calderon
+
+Edgardo Josue Guzman Piedy 0501200010278
+David Alberto Garcia Bonilla 0801199918474
+Darwin Alejandro Garcia Bonilla 0801199918475
+
+*/

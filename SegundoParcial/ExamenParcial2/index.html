@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Examen_EdgardoGuzman</title>
+</head>
+    
+<body>
+    <form>
+        <label>Nombre del cliente:</label>
+        <input type="text" id="nombre">
+        <br>
+        <hr>
+        <label>Destino:</label>
+        <select id="destino">
+            <option value="roatan">Roatan</option>
+            <option value="cortes">Cortes</option>
+            <option value="ensenada">Ensenada</option>
+        </select>
+        <br>
+        <hr>
+        <label>Fecha de ida:</label>
+        <input type="date" id="fecha-ida">
+        <br>
+        <hr>
+        <label>Fecha de regreso:</label>
+        <input type="date" id="fecha-regreso">
+        <br>
+        <hr>
+        <label>Cantidad de personas:</label>
+        <input type="number" id="cantidad-personas">
+        <br><hr>
+        <label>Cantidad de adultos:</label>
+        <input type="number" id="cantidad-adultos">
+        <br><hr>
+        <label>Cantidad de niños:</label>
+        <input type="number" id="cantidad-ninos">
+        <br><hr>
+        <button type="button" onclick="calcularCosto()">Calcular costo</button>
+    </form>
+    <hr>
+    <table border="1" id="tablaPaquetes">
+        <tr>
+            <th>Nombre</th>
+            <th>Destino</th>
+            <th>Fecha de ida</th>
+            <th>Fecha de regreso</th>
+            <th>Cantidad de personas</th>
+            <th>Cantidad de adultos</th>
+            <th>Cantidad de niños</th>
+            <th>Costo total</th>
+        </tr>
+    </table>
+    <br>
+    <hr>
+    <label>Reporte por temporada:</label>
+    <select id="temporada">
+        <option value="alta">Temporada alta</option>
+        <option value="baja">Temporada baja</option>
+    </select>
+    <button type="button" onclick="reportePorTemporada()">Generar reporte</button>
+    <br>
+    <hr>
+
+    <table border="1" id="tablaReportes">
+        <thead>
+        <tr>
+            <th>Nombre</th>
+            <th>Destino</th>
+            <th>Fecha de ida</th>
+            <th>Fecha de regreso</th>
+            <th>Cantidad de personas</th>
+            <th>Cantidad de adultos</th>
+            <th>Cantidad de niños</th>
+            <th>Costo total</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr>
+            <td colspan="8">No se encontraron resultados</td>
+        </tr>
+        </tbody>
+    </table>
+    
+    <script src="examen.js"></script>
+</body>
+</html>

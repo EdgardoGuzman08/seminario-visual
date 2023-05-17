@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <h1>Crear Proyecto</h1>
+
+    <form action="/savePro" method="post">
+        <label for="">Codigo</label>
+        <input type="text" name="idproyecto">
+        <label for="">Nombre del proyecto</label>
+        <input type="text" name="nombreproyecto">
+        <label for="">Ciudad</label>
+        <input type="text" name="ciudad">
+        <label for="">Monto</label>
+        <input type="text" name="monto">
+        <label for="">ID del diputado</label>
+        <select name="iddiputado">
+            <option value="">Seleccione un diputado</option>
+            <% for(var i=0; i<diputados.length; i++) { %>
+                <option value="<%= diputados[i].ID %>"><%= diputados[i].ID %> - <%= diputados[i].nombre %></option>
+            <% } %>
+        </select>
+        <button type="submit">Guardar</button>
+    </form>
+</body>
+</html>

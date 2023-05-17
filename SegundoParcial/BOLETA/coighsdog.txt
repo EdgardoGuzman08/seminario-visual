@@ -1,0 +1,64 @@
+
+
+// Evento click para el botón consultarBoleta
+document.getElementById("consultarBoleta").addEventListener("click", () => {
+    let codigo = document.getElementById("codigoAlumno").value;
+    let nombre = document.getElementById("nombreAlumno").value;
+    let alumno;
+    
+        // Verificar si se está buscando por código o por nombre
+        if (codigo) {
+        alumno = Alumnos.find((a) => a.codigo === codigo);
+        } else if (nombre) {
+        alumno = Alumnos.find((a) => a.nombre === nombre);
+        }
+    
+        // Verificar si se encontró el alumno
+        if (alumno) {
+        // Crear una nueva fila en la tabla boleta
+        let fila = document.createElement("tr");
+    
+        // Agregar las celdas correspondientes a la fila
+        let celdaIdAlumno = document.createElement("td");
+        celdaIdAlumno.textContent = alumno.codigo;
+        fila.appendChild(celdaIdAlumno);
+    
+        let celdaNombre = document.createElement("td");
+        celdaNombre.textContent = `${alumno.nombre} ${alumno.apellido}`;
+        fila.appendChild(celdaNombre);
+    
+        let celdaIdMateria = document.createElement("td");
+        celdaIdMateria.textContent = "1"; // Id de la materia seleccionada en el select
+        fila.appendChild(celdaIdMateria);
+    
+        let celdaNombreMateria = document.createElement("td");
+        celdaNombreMateria.textContent = Materias[0].nombre; // Nombre de la materia seleccionada en el select
+        fila.appendChild(celdaNombreMateria);
+    
+        let celdaNota1 = document.createElement("td");
+        celdaNota1.textContent = "";
+        fila.appendChild(celdaNota1);
+    
+        let celdaNota2 = document.createElement("td");
+        celdaNota2.textContent = "";
+        fila.appendChild(celdaNota2);
+    
+        let celdaNota3 = document.createElement("td");
+        celdaNota3.textContent = "";
+        fila.appendChild(celdaNota3);
+    
+        let celdaPromedio = document.createElement("td");
+        celdaPromedio.textContent = "";
+        fila.appendChild(celdaPromedio);
+    
+        let celdaObservacion = document.createElement("td");
+        celdaObservacion.textContent = "";
+        fila.appendChild(celdaObservacion);
+    
+        // Agregar la fila a la tabla boleta
+        let tabla = document.getElementById("boleta");
+        tabla.appendChild(fila);
+        } else {
+        alert("Alumno no encontrado");
+        }
+    });

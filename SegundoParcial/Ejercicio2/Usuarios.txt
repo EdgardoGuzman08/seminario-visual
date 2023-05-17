@@ -1,0 +1,58 @@
+si usuario existe que se recupere el dato como tal el nombre pero tambien se muestren los vehiculos
+y no trabajar el id aca if(user.idusuario===1) sino que se pueda manipular y cambiar
+
+let usuarios = [
+    {id: 1, nombre: "Edgardo", apellido: "Guzman"},
+    {id: 2, nombre: "Josue", apellido: "Piedy"},
+    {id: 3, nombre: "Gabriela", apellido: "Giron"}
+];
+let vehiculos = [
+    {id: 1, marca: "Toyota", modelo: "Yaris", idusuario: 1},
+    {id: 2, marca: "Ford", modelo: "Ranger", idusuario: 2},
+    {id: 3, marca: "Nissan", modelo: "Gtr", idusuario: 3},
+    {id: 4, marca: "Ford", modelo: "Raptor", idusuario: 3}
+];
+/**
+function verVehiculo(idUsuario){
+    // Muestra un mensaje en consola
+    console.log("Buscando vehiculos por usuario");
+    // Espera 3 segundos antes de ejecutar el siguiente código
+    setTimeout(function(){
+        // Filtra los vehículos para obtener solo los que pertenecen al usuario con el ID especificado
+        let vehiculosUsuario = vehiculos.filter(function(vehiculo){
+            return vehiculo.idusuario === idUsuario;
+        });
+        // Busca el usuario con el ID especificado
+        let usuario = usuarios.find(function(user){
+            return user.id === idUsuario;
+        });
+        // Si el usuario existe, muestra su nombre y los vehículos que le pertenecen
+        if(usuario){
+            console.log("Nombre de Usuario:", usuario.nombre);
+            console.log("Vehiculos:");
+            for(let vehiculo of vehiculosUsuario){
+                console.log("- Marca:", vehiculo.marca, " Modelo:", vehiculo.modelo);
+            }
+        }else{
+            // Si el usuario no existe, muestra un mensaje indicando que no se encontró
+            console.log("Usuario no encontrado");
+        }
+    },3000);
+}
+
+function verUsuario(){
+    // Pide al usuario que ingrese el ID del usuario a buscar
+    let idUsuario = prompt("Ingrese el id del usuario");
+    // Muestra un mensaje indicando que se está buscando el usuario con el ID especificado
+    console.log("Buscando datos de usuario con id:", idUsuario);
+    // Espera 3 segundos antes de ejecutar el siguiente código
+    setTimeout(function(){
+        // Si existen usuarios en la lista, llama a la función verVehiculo con el ID del usuario a buscar
+        if (usuarios.length > 0){
+            verVehiculo(parseInt(idUsuario));
+        }else{
+            // Si no existen usuarios en la lista, muestra un mensaje indicando que no se encontraron usuarios
+            console.log("Usuarios no encontrados");
+        }
+    },3000);
+}
